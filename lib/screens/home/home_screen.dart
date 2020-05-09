@@ -76,52 +76,6 @@ class _HomeScreenState extends State<HomeScreen>
                       top: 60),
                   child: Column(
                     children: <Widget>[
-//                      ListTile(
-//                        contentPadding: EdgeInsets.only(left: 20),
-//                        leading: Icon(
-//                          FontAwesomeIcons.fileExport,
-//                          size: 30.0,
-//                          color: Colors.white,
-//                        ),
-//                        title:Text(
-//                          'Export',
-//                          style: TextStyle(
-//                            fontSize: 18.0,
-//                            color: Colors.white,
-//                          ),
-//                        ),
-//                        onTap: () => print('Export'),
-//                      ),
-//                      ListTile(
-//                        contentPadding: EdgeInsets.only(left: 60),
-//                        leading: Text(
-//                          user.nickname,
-//                          style: TextStyle(
-//                            color: Colors.white,
-//                          ),
-//                        ),
-//                        onTap: () => print('Name'),
-//                      ),
-//                      ListTile(
-//                        contentPadding: EdgeInsets.only(left: 20),
-//                        leading: Icon(
-//                          Icons.settings,
-//                          size: 30.0,
-//                          color: Colors.white,
-//                        ),
-//                        title:Text(
-//                          'Settings',
-//                          style: TextStyle(
-//                            fontSize: 18.0,
-//                            color: Colors.white,
-//                          ),
-//                        ),
-//                        onTap: () {
-//                          Navigator.push(context, MaterialPageRoute(
-//                            builder: (context) => SettingsPage(),
-//                          ));
-//                        },
-//                      ),
                       ListTile(
                         contentPadding: EdgeInsets.only(left: 60, top: 50),
                         leading: Icon(

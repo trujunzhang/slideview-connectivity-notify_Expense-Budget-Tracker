@@ -79,8 +79,7 @@ class AuthService {
       );
 
       final AuthResult result = await _auth.signInWithCredential(_credential);
-      // isNew = result.additionalUserInfo.isNewUser;
-      isNew = true;
+      isNew = result.additionalUserInfo.isNewUser;
       final FirebaseUser firebaseUser = result.user;
       User user = _userFromFirebase(firebaseUser);
 

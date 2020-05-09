@@ -1,10 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ieatta/models/expense_model.dart';
 import 'package:ieatta/models/graph_models.dart';
 import 'package:ieatta/models/income_model.dart';
 import 'package:ieatta/models/reminder_model.dart';
 import 'package:ieatta/models/user_model.dart';
 import 'package:ieatta/shared/list.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DatabaseService {

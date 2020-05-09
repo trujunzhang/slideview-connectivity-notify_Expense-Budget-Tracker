@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ieatta/models/user_model.dart';
 import 'package:ieatta/screens/home/recent_transaction_screen.dart';
 import 'package:ieatta/services/auth_service.dart';
@@ -8,9 +9,9 @@ import 'package:ieatta/shared/loading.dart';
 import 'package:ieatta/widgets/bottom_control_bar_widget.dart';
 import 'package:ieatta/widgets/signout_widget.dart';
 import 'package:ieatta/widgets/top_control_bar_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'about_page_screen.dart';
 import 'account_summary_screen.dart';
 

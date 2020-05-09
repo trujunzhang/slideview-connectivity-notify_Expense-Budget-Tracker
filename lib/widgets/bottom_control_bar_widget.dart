@@ -1,5 +1,5 @@
-import 'package:ieatta/screens/home/add_mode_selection_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:ieatta/screens/home/add_mode_selection_screen.dart';
 
 Widget bottomControlBar(BuildContext context) {
   return Align(

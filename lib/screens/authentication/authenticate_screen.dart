@@ -1,9 +1,5 @@
-import 'package:ieatta/enums/connectivity_status.dart';
-import 'package:ieatta/screens/authentication/onboarding_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../offline_screen.dart';
+import 'package:ieatta/screens/authentication/onboarding_screen.dart';
 
 class AuthenticateScreen extends StatefulWidget {
   @override

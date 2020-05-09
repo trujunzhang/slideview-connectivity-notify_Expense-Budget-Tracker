@@ -1,5 +1,5 @@
-import 'package:ieatta/services/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:ieatta/services/auth_service.dart';
 
 final AuthService _authService = AuthService();
 

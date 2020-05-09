@@ -1,7 +1,6 @@
-import 'package:ieatta/shared/constants.dart';
-import 'package:ieatta/shared/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:ieatta/shared/constants.dart';
 
 class OfflineScreen extends StatelessWidget {
   @override

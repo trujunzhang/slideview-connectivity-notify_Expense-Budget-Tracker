@@ -1,8 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:ieatta/enums/connectivity_status.dart';
-import 'package:ieatta/shared/constants.dart';
 import 'package:ieatta/shared/list.dart';
 import 'package:ieatta/widgets/signin_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../offline_screen.dart';

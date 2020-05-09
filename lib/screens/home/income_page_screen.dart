@@ -1,11 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ieatta/models/income_model.dart';
 import 'package:ieatta/models/user_model.dart';
 import 'package:ieatta/services/database_service.dart';
 import 'package:ieatta/shared/loading.dart';
 import 'package:ieatta/widgets/card_row_details_widget.dart';
 import 'package:ieatta/widgets/nav_screen_buttons_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

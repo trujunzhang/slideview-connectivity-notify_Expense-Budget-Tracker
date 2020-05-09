@@ -1,8 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:ieatta/models/expense_model.dart';
 import 'package:ieatta/screens/home/expense_page_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:ieatta/shared/list.dart';
+import 'package:intl/intl.dart';
 
 class BuildExpenseTiles extends StatefulWidget {
   int itemCount;

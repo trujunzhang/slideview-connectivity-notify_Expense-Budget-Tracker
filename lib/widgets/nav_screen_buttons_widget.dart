@@ -1,7 +1,7 @@
 import 'dart:ui';
 
-import 'package:ieatta/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:ieatta/shared/constants.dart';
 
 //Back Button
 Widget backButtonWidget(BuildContext context, Color col) {

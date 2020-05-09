@@ -1,7 +1,7 @@
-import 'package:ieatta/models/income_model.dart';
-import 'package:ieatta/screens/home/income_page_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ieatta/models/income_model.dart';
+import 'package:ieatta/screens/home/income_page_screen.dart';
 import 'package:intl/intl.dart';
 
 class BuildIncomeTiles extends StatefulWidget {

@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:ieatta/models/user_model.dart';
 import 'package:ieatta/services/database_service.dart';
 import 'package:ieatta/shared/constants.dart';
 import 'package:ieatta/shared/list.dart';
 import 'package:ieatta/shared/loading.dart';
 import 'package:ieatta/widgets/nav_screen_buttons_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AddExpensePage extends StatefulWidget {

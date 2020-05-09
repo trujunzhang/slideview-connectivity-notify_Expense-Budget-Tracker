@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:ieatta/models/user_model.dart';
 import 'package:ieatta/services/database_service.dart';
 import 'package:ieatta/shared/loading.dart';
@@ -5,7 +6,6 @@ import 'package:ieatta/widgets/build_expense_tiles_widget.dart';
 import 'package:ieatta/widgets/build_income_tiles_widget.dart';
 import 'package:ieatta/widgets/nav_screen_buttons_widget.dart';
 import 'package:ieatta/widgets/transaction_types_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AllTransactionsScreen extends StatefulWidget {

@@ -1,3 +1,6 @@
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ieatta/models/graph_models.dart';
 import 'package:ieatta/models/user_model.dart';
 import 'package:ieatta/services/database_service.dart';
@@ -5,10 +8,7 @@ import 'package:ieatta/shared/loading.dart';
 import 'package:ieatta/widgets/nav_screen_buttons_widget.dart';
 import 'package:ieatta/widgets/pie_chart_widget.dart';
 import 'package:ieatta/widgets/transaction_types_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:charts_flutter/flutter.dart' as charts;
 
 class GraphBudgetScreen extends StatefulWidget {
   @override

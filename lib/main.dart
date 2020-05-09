@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<User>.value(
-        value: AuthService().onAuthStateChanged,
+          value: AuthService().onAuthStateChanged,
         ),
         StreamProvider<ConnectivityStatus>.value(
           value: ConnectivityService().onConnectivityChanged,

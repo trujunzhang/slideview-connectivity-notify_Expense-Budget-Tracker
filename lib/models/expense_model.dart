@@ -7,8 +7,12 @@ class Expense {
   final String expenseMode;
   final Timestamp timestamp;
 
-  Expense({this.amount, this.textLabel, this.category, this.expenseMode, this.timestamp});
-
+  Expense(
+      {this.amount,
+      this.textLabel,
+      this.category,
+      this.expenseMode,
+      this.timestamp});
 }
 
 List<Expense> expList = [];

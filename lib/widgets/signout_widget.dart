@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 final AuthService _authService = AuthService();
 
-Future SignOut(BuildContext context){
+Future SignOut(BuildContext context) {
   return showDialog(
       context: context,
       builder: (context) {
@@ -11,7 +11,7 @@ Future SignOut(BuildContext context){
           title: Text('Confirm sign out'),
           actions: <Widget>[
             FlatButton(
-              onPressed: () async{
+              onPressed: () async {
                 Navigator.pop(context);
                 await _authService.signOut();
                 return null;
@@ -24,6 +24,5 @@ Future SignOut(BuildContext context){
             ),
           ],
         );
-      }
-  );
+      });
 }

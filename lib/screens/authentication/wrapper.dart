@@ -14,6 +14,6 @@ class Wrapper extends StatelessWidget {
     //return either Home or Authenticate Screen
     return (connectionStatus == ConnectivityStatus.Offline)
         ? OfflineScreen()
-          : ((user != null) ? HomeScreen() : AuthenticateScreen());
+        : ((user != null) ? HomeScreen() : AuthenticateScreen());
   }
 }

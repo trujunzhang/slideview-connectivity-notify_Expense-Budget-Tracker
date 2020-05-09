@@ -1,4 +1,3 @@
-
 class User {
   String uid;
   String nickname;
@@ -19,5 +18,4 @@ class User {
     this.tExpenseAmount,
     this.balance,
   });
-
 }

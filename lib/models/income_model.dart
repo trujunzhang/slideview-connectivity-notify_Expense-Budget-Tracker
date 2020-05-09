@@ -6,7 +6,6 @@ class Income {
   final Timestamp timestamp;
 
   Income({this.amount, this.source, this.timestamp});
-
 }
 
 List<Income> incomeList = [];

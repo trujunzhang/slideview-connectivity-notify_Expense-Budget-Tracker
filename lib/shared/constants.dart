@@ -1,38 +1,21 @@
 import 'package:flutter/material.dart';
 
-BoxDecoration profileIconDecoration =  BoxDecoration(
+BoxDecoration profileIconDecoration = BoxDecoration(
   borderRadius: BorderRadius.circular(30),
   color: primaryColor1,
   boxShadow: [
-    BoxShadow(
-        color: primaryColor1,
-        blurRadius: 5.0,
-        offset: Offset(2,1)
-    ),
-    BoxShadow(
-        color: primaryColor1,
-        blurRadius: 5.0,
-        offset: Offset(-2,-1)
-    )
+    BoxShadow(color: primaryColor1, blurRadius: 5.0, offset: Offset(2, 1)),
+    BoxShadow(color: primaryColor1, blurRadius: 5.0, offset: Offset(-2, -1))
   ],
 );
 
 BoxDecoration addExpenseButtonDecoration = BoxDecoration(
     color: primaryColor1,
     boxShadow: [
-      BoxShadow(
-          color: primaryColor2,
-          blurRadius: 2.0,
-          offset: Offset(2,1)
-      ),
-      BoxShadow(
-          color: primaryColor2,
-          blurRadius: 5.0,
-          offset: Offset(-2,-1)
-      )
+      BoxShadow(color: primaryColor2, blurRadius: 2.0, offset: Offset(2, 1)),
+      BoxShadow(color: primaryColor2, blurRadius: 5.0, offset: Offset(-2, -1))
     ],
-    borderRadius: BorderRadius.circular(10.0)
-);
+    borderRadius: BorderRadius.circular(10.0));
 
 TextStyle formFieldTitleTextStyle = TextStyle(
   color: Colors.white,
@@ -75,6 +58,4 @@ BoxDecoration addCategoryChipDecoration = BoxDecoration(
         Colors.purple,
         Colors.pinkAccent,
       ],
-    )
-);
-
+    ));

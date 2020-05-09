@@ -15,20 +15,20 @@ import 'about_page_screen.dart';
 import 'account_summary_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin{
-
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   SharedPreferences prefs;
   int _currentPage = 0;
   bool transform = false;
   bool loadList = true;
 
   final AuthService _authService = AuthService();
-  final PushNotificationService _pushNotificationService = PushNotificationService();
+  final PushNotificationService _pushNotificationService =
+      PushNotificationService();
 
   @override
   void initState() {
@@ -43,12 +43,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     print('%');
     return StreamBuilder(
       stream: _db.userData,
-      builder: (context, snapshot){
+      builder: (context, snapshot) {
         User user = snapshot.data;
         _db.user = user;
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           double height = MediaQuery.of(context).size.height;
-          if(loadList == true){
+          if (loadList == true) {
             _db.getIncomes(user.budgetCycle);
             _db.getExpenses(user.budgetCycle);
             _db.getBudgetCycles();
@@ -62,16 +62,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color(0xFF004e92),
-                          Color(0xFF000428),
-                        ],
-                      )
-                  ),
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF004e92),
+                      Color(0xFF000428),
+                    ],
+                  )),
                   alignment: Alignment.topRight,
-                  padding: EdgeInsets.only(left: (MediaQuery.of(context).size.width - 20)/2.5, top: 60),
+                  padding: EdgeInsets.only(
+                      left: (MediaQuery.of(context).size.width - 20) / 2.5,
+                      top: 60),
                   child: Column(
                     children: <Widget>[
 //                      ListTile(
@@ -126,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           Icons.star_border,
                           color: Colors.white,
                         ),
-                        title:Text(
+                        title: Text(
                           'Rate Us',
                           style: TextStyle(
                             color: Colors.white,
@@ -140,16 +141,18 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           Icons.info_outline,
                           color: Colors.white,
                         ),
-                        title:Text(
+                        title: Text(
                           'About',
                           style: TextStyle(
                             color: Colors.white,
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => AboutPage(),
-                          ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AboutPage(),
+                              ));
                         },
                       ),
                       ListTile(
@@ -158,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           Icons.person_outline,
                           color: Colors.white,
                         ),
-                        title:Text(
+                        title: Text(
                           'Sign Out',
                           style: TextStyle(
                             color: Colors.white,
@@ -172,8 +175,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
-                    if(transform == true) {
+                  onTap: () {
+                    if (transform == true) {
                       setState(() {
                         transform = false;
                         _currentPage = -1;
@@ -181,13 +184,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                     }
                   },
                   child: Transform(
-                    transform: (transform) ? (Matrix4.identity()..scale(0.5)) : (Matrix4.identity()..scale(1.0)),
+                    transform: (transform)
+                        ? (Matrix4.identity()..scale(0.5))
+                        : (Matrix4.identity()..scale(1.0)),
                     alignment: Alignment.centerLeft,
                     child: Stack(
                       children: <Widget>[
                         Container(
                           decoration: backgroundGradient,
-                          padding: const EdgeInsets.only(top: 50.0, left: 10.0, right:  10),
+                          padding: const EdgeInsets.only(
+                              top: 50.0, left: 10.0, right: 10),
                           child: Container(
                             height: height * 0.35,
                             child: Column(
@@ -195,26 +201,37 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       InkWell(
-                                        onTap: (){
-                                          Navigator.push(context, MaterialPageRoute(
-                                            builder: (context) => AccountSummaryScreen(),
-                                          ));
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AccountSummaryScreen(),
+                                              ));
                                         },
                                         child: Column(
                                           children: <Widget>[
-                                            SizedBox(height: 5.0,),
+                                            SizedBox(
+                                              height: 5.0,
+                                            ),
                                             Text(
                                               '₹${user.balance}',
-                                              textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                                              textScaleFactor:
+                                                  MediaQuery.of(context)
+                                                          .textScaleFactor *
+                                                      2,
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
-                                            SizedBox(height: 10.0,),
+                                            SizedBox(
+                                              height: 10.0,
+                                            ),
                                             Text(
                                               'Available Balance',
                                               style: TextStyle(
@@ -224,56 +241,76 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                           ],
                                         ),
                                       ),
-                                      SizedBox(width: 10,),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
                                       InkWell(
                                         onTap: () {
                                           showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return AlertDialog(
-                                                title: Text('Confirm Create New Cycle?'),
-                                                actions: <Widget>[
-                                                  FlatButton(
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        user.budgetCycle += 1;
-                                                      });
-                                                      print('Cycle Changed to ${user.budgetCycle}');
-                                                      _db.updateBudgetData();
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Text('Yes'),
-                                                  ),
-                                                  FlatButton(
-                                                    onPressed: () => Navigator.pop(context),
-                                                    child: Text('No'),
-                                                  ),
-                                                ],
-                                              );
-                                            }
-                                          );
+                                              context: context,
+                                              builder: (context) {
+                                                return AlertDialog(
+                                                  title: Text(
+                                                      'Confirm Create New Cycle?'),
+                                                  actions: <Widget>[
+                                                    FlatButton(
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          user.budgetCycle += 1;
+                                                        });
+                                                        print(
+                                                            'Cycle Changed to ${user.budgetCycle}');
+                                                        _db.updateBudgetData();
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: Text('Yes'),
+                                                    ),
+                                                    FlatButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              context),
+                                                      child: Text('No'),
+                                                    ),
+                                                  ],
+                                                );
+                                              });
                                         },
                                         child: Column(
                                           children: <Widget>[
-                                            SizedBox(height: 10,),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
                                             ClipRRect(
-                                              borderRadius: BorderRadius.circular(40),
+                                              borderRadius:
+                                                  BorderRadius.circular(40),
                                               child: Container(
-                                                padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 5, vertical: 5),
                                                 color: Colors.white,
-                                                child: Text('${user.budgetCycle}',
-                                                  textScaleFactor: MediaQuery.of(context).textScaleFactor * 1.5,
+                                                child: Text(
+                                                  '${user.budgetCycle}',
+                                                  textScaleFactor:
+                                                      MediaQuery.of(context)
+                                                              .textScaleFactor *
+                                                          1.5,
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(height: 5.0,),
+                                            SizedBox(
+                                              height: 5.0,
+                                            ),
                                             Row(
                                               children: <Widget>[
-                                                Icon(Icons.add_circle_outline, color: Colors.white,),
-                                                SizedBox(width: 5,),
+                                                Icon(
+                                                  Icons.add_circle_outline,
+                                                  color: Colors.white,
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
                                                 Text(
                                                   'Budget Cycle',
                                                   style: TextStyle(
@@ -289,7 +326,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 10,),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 TopControlBar(),
                               ],
                             ),
@@ -298,9 +337,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Container(
-                            padding: EdgeInsets.only(left: 20, right: 20.0, top: 10.0),
+                            padding: EdgeInsets.only(
+                                left: 20, right: 20.0, top: 10.0),
                             width: MediaQuery.of(context).size.width,
-                            height: (height > 700) ? height * 0.74 : height * 0.6,
+                            height:
+                                (height > 700) ? height * 0.74 : height * 0.6,
                             decoration: BoxDecoration(
                               color: Colors.blue[50],
                               borderRadius: BorderRadius.only(
@@ -312,11 +353,10 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               children: <Widget>[
                                 Expanded(
                                     child: ListView(
-                                      children:<Widget> [
-                                        RecentTransactions(),
-                                      ],
-                                    )
-                                ),
+                                  children: <Widget>[
+                                    RecentTransactions(),
+                                  ],
+                                )),
                               ],
                             ),
                           ),
@@ -330,7 +370,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                   padding: const EdgeInsets.only(right: 20.0, top: 60),
                   child: Align(
                     alignment: Alignment.topRight,
-                    child:  Container(
+                    child: Container(
                       decoration: profileIconDecoration,
                       child: InkWell(
                         onTap: () {
@@ -344,8 +384,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                               user.photoUrl,
                               width: 50.0,
                               height: 50.0,
-                            )
-                        ),
+                            )),
                       ),
                     ),
                   ),
@@ -353,13 +392,11 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               ],
             ),
           );
-        }
-        else{
+        } else {
           return Scaffold(
             body: Loading(),
           );
         }
-
       },
     );
   }

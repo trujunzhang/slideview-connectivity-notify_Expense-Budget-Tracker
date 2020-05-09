@@ -23,10 +23,10 @@ class _AllTransactionsScreenState extends State<AllTransactionsScreen> {
     DatabaseService _db = DatabaseService(user: user1);
     return StreamBuilder(
       stream: _db.userData,
-      builder: (context, snapshot){
+      builder: (context, snapshot) {
         User user = snapshot.data;
         _db.user = user;
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           _db.getExpenses(user.budgetCycle);
           _db.getIncomes(user.budgetCycle);
           return Scaffold(
@@ -39,19 +39,23 @@ class _AllTransactionsScreenState extends State<AllTransactionsScreen> {
                   Row(
                     children: <Widget>[
                       backButtonWidget(context, Colors.blue[800]),
-                      SizedBox(width: 15.0,),
+                      SizedBox(
+                        width: 15.0,
+                      ),
                       Text(
                         'All Transactions',
-                        textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                        textScaleFactor:
+                            MediaQuery.of(context).textScaleFactor * 2,
                         style: TextStyle(
                             color: Colors.blue[900],
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Rome'
-                        ),
+                            fontFamily: 'Rome'),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.0,),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   Container(
                     height: 30.0,
                     width: MediaQuery.of(context).size.width,
@@ -59,63 +63,77 @@ class _AllTransactionsScreenState extends State<AllTransactionsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         GestureDetector(
-                          child:  TransactionType(iconData: null, type: 'All', selected: (selectedMode == 0)? true : false,),
-                          onTap: () {
-                            setState(() {
-                              selectedMode = 0;
-                            });
-                          }
-                        ),
+                            child: TransactionType(
+                              iconData: null,
+                              type: 'All',
+                              selected: (selectedMode == 0) ? true : false,
+                            ),
+                            onTap: () {
+                              setState(() {
+                                selectedMode = 0;
+                              });
+                            }),
                         GestureDetector(
-                          child:  TransactionType(iconData: Icons.arrow_downward, type: 'Income', selected: (selectedMode == 1)? true : false,),
+                            child: TransactionType(
+                              iconData: Icons.arrow_downward,
+                              type: 'Income',
+                              selected: (selectedMode == 1) ? true : false,
+                            ),
                             onTap: () {
                               setState(() {
                                 selectedMode = 1;
                               });
-                            }
-                        ),
+                            }),
                         GestureDetector(
-                          child:  TransactionType(iconData: Icons.arrow_upward, type: 'Expense', selected: (selectedMode == 2)? true : false,),
+                            child: TransactionType(
+                              iconData: Icons.arrow_upward,
+                              type: 'Expense',
+                              selected: (selectedMode == 2) ? true : false,
+                            ),
                             onTap: () {
                               setState(() {
                                 selectedMode = 2;
                               });
-                            }
-                        ),
+                            }),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.0,),
-                  (selectedMode == 0) ?
-                  Column(
-                    children: <Widget>[
-                      BuildIncomeTiles(itemCount: 0, all: true,),
-                      BuildExpenseTiles(itemCount: 0, all: true,),
-                    ],
-                  )
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  (selectedMode == 0)
+                      ? Column(
+                          children: <Widget>[
+                            BuildIncomeTiles(
+                              itemCount: 0,
+                              all: true,
+                            ),
+                            BuildExpenseTiles(
+                              itemCount: 0,
+                              all: true,
+                            ),
+                          ],
+                        )
                       : SizedBox.shrink(),
-                  (selectedMode == 1) ?
-                  BuildIncomeTiles(itemCount: 0, all: true)
+                  (selectedMode == 1)
+                      ? BuildIncomeTiles(itemCount: 0, all: true)
                       : SizedBox.shrink(),
-                  (selectedMode == 2)?
-                  BuildExpenseTiles(itemCount: 0, all: true,)
-                      :SizedBox.shrink(),
+                  (selectedMode == 2)
+                      ? BuildExpenseTiles(
+                          itemCount: 0,
+                          all: true,
+                        )
+                      : SizedBox.shrink(),
                 ],
               ),
             ),
           );
-        }
-        else{
+        } else {
           return Scaffold(
             body: Loading(),
           );
         }
       },
     );
-
-
-
   }
-
-
 }

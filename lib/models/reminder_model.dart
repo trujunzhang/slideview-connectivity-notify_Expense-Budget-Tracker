@@ -1,4 +1,4 @@
-class Reminder{
+class Reminder {
   String time;
 
   Reminder({this.time});

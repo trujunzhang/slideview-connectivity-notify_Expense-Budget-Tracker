@@ -8,7 +8,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-
   final AuthService _authService = AuthService();
 
   bool loading = false;
@@ -33,8 +32,8 @@ class _SignInState extends State<SignIn> {
               //setState(() => loading = true);
               dynamic result = await _authService.signInWithGoogle();
 //              if(result == null){
-                //setState(() {
-                  //loading = false;
+              //setState(() {
+              //loading = false;
 //                });
 //              }
               return result;
@@ -50,7 +49,9 @@ class _SignInState extends State<SignIn> {
                     size: 25.0,
                   ),
                 ),
-                SizedBox(width: 10.0,),
+                SizedBox(
+                  width: 10.0,
+                ),
                 Expanded(
                   child: Center(
                     child: Text(

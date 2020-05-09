@@ -13,7 +13,6 @@ class AddExpensePage extends StatefulWidget {
 }
 
 class _AddExpensePageState extends State<AddExpensePage> {
-
   final _formKey = GlobalKey<FormState>();
 
   String selectedCategory = '';
@@ -28,10 +27,10 @@ class _AddExpensePageState extends State<AddExpensePage> {
     final DatabaseService _db = DatabaseService(user: user1);
     return StreamBuilder(
       stream: _db.userData,
-      builder: (context, snapshot){
+      builder: (context, snapshot) {
         User user = snapshot.data;
         _db.user = user;
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             body: Container(
@@ -46,36 +45,43 @@ class _AddExpensePageState extends State<AddExpensePage> {
                     children: <Widget>[
                       InkWell(
                         child: addButtonWidget(Colors.white),
-                        onTap: (){
-                          if(_formKey.currentState.validate()){
-                            if(selectedCategory.isEmpty)
+                        onTap: () {
+                          if (_formKey.currentState.validate()) {
+                            if (selectedCategory.isEmpty)
                               selectedCategory = 'Misc';
-                            _db.addExpense(amount, selectedExpenseMode, textLabel, selectedCategory);
+                            _db.addExpense(amount, selectedExpenseMode,
+                                textLabel, selectedCategory);
                             print('Expense Added');
-                            showDialog(context: context,builder: (context){
-                              return AlertDialog(
-                                title: Text("Expense Added!"),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text(
-                                      'OK',
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    } ,
-                                  ),
-                                ],
-                              );
-                            });
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("Expense Added!"),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text(
+                                          'OK',
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
                           }
                         },
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.0,),
+                  SizedBox(
+                    height: 10.0,
+                  ),
                   expenseModeSelector(),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Container(
                     child: expenseDetailsForm(context),
                   ),
@@ -83,7 +89,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
               ),
             ),
           );
-        }else{
+        } else {
           return Scaffold(body: Loading());
         }
       },
@@ -102,7 +108,9 @@ class _AddExpensePageState extends State<AddExpensePage> {
             '* Amount',
             style: formFieldTitleTextStyle,
           ),
-          SizedBox(height: 15.0,),
+          SizedBox(
+            height: 15.0,
+          ),
           TextFormField(
               keyboardType: TextInputType.number,
               decoration: formFieldDecoration,
@@ -113,84 +121,101 @@ class _AddExpensePageState extends State<AddExpensePage> {
               onChanged: (val) {
                 amount = int.parse(val);
               },
-              validator: (val){
-                if(val.isEmpty)
+              validator: (val) {
+                if (val.isEmpty)
                   return 'Please enter an amount';
-                else if(val.contains('-') || val.contains(' ') || val.contains(','))
+                else if (val.contains('-') ||
+                    val.contains(' ') ||
+                    val.contains(','))
                   return 'Invalid Amount';
                 else
                   return null;
-              }
+              }),
+          SizedBox(
+            height: 15.0,
           ),
-          SizedBox(height: 15.0,),
           //Label Field
           Text(
-            (selectedExpenseMode == addExpenseMode[1]) ? '* Text Label' : '* Person',
+            (selectedExpenseMode == addExpenseMode[1])
+                ? '* Text Label'
+                : '* Person',
             style: formFieldTitleTextStyle,
           ),
-          SizedBox(height: 15.0,),
-          TextFormField(
-            decoration: formFieldDecoration,
-            style: TextStyle(
-              fontSize: 15.0,
-              color: Colors.white,
-            ),
-            onChanged: (val) {
-              textLabel = val;
-            } ,
-            validator: (val){
-              if(val.isEmpty && selectedExpenseMode != addExpenseMode[1])
-                return 'Empty Field not Allowed';
-              else
-                return null;
-            }
+          SizedBox(
+            height: 15.0,
           ),
+          TextFormField(
+              decoration: formFieldDecoration,
+              style: TextStyle(
+                fontSize: 15.0,
+                color: Colors.white,
+              ),
+              onChanged: (val) {
+                textLabel = val;
+              },
+              validator: (val) {
+                if (val.isEmpty && selectedExpenseMode != addExpenseMode[1])
+                  return 'Empty Field not Allowed';
+                else
+                  return null;
+              }),
 
           (selectedExpenseMode == addExpenseMode[1])
               ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 15.0,),
-              //Category Title Field
-              Text(
-                'Add Custom Category Title',
-                style: formFieldTitleTextStyle.copyWith(fontSize: 30.0),
-              ),
-              TextFormField(
-                decoration: formFieldDecoration,
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.white,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    //Category Title Field
+                    Text(
+                      'Add Custom Category Title',
+                      style: formFieldTitleTextStyle.copyWith(fontSize: 30.0),
+                    ),
+                    TextFormField(
+                      decoration: formFieldDecoration,
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                      ),
+                      onChanged: (val) {
+                        addedCategoryTitle = val;
+                      },
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    //Widget for building category chips
+                    expenseCategorySelector(),
+                    SizedBox(
+                      height: 15.0,
+                    )
+                  ],
+                )
+              : SizedBox(
+                  height: 15.0,
                 ),
-                onChanged: (val) {
-                  addedCategoryTitle = val;
-                },
-              ),
-              SizedBox(height: 15.0,),
-              //Widget for building category chips
-              expenseCategorySelector(),
-              SizedBox(height: 15.0,)
-            ],
-          )
-              : SizedBox(height: 15.0,),
         ],
       ),
     );
   }
 
   Widget expenseModeSelector() {
-
     List<Widget> buildExpenseModeChip() {
       List<Widget> expensemode = addExpenseMode.map((title) {
         return RaisedButton(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: (title.compareTo(selectedExpenseMode) == 0) ? Colors.white : Colors.black,
+          color: (title.compareTo(selectedExpenseMode) == 0)
+              ? Colors.white
+              : Colors.black,
           child: Text(
             title,
             style: TextStyle(
-              color: (title.compareTo(selectedExpenseMode) == 0) ? Colors.black : Colors.white,
+              color: (title.compareTo(selectedExpenseMode) == 0)
+                  ? Colors.black
+                  : Colors.white,
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'Rome',
@@ -205,6 +230,7 @@ class _AddExpensePageState extends State<AddExpensePage> {
       }).toList();
       return expensemode;
     }
+
     return Wrap(
       spacing: 20,
       alignment: WrapAlignment.spaceAround,
@@ -213,9 +239,8 @@ class _AddExpensePageState extends State<AddExpensePage> {
   }
 
   Widget expenseCategorySelector() {
-
     List<Widget> buildCategoryChip() {
-      Widget addCategoryWidget(){
+      Widget addCategoryWidget() {
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
           decoration: addCategoryChipDecoration,
@@ -228,12 +253,11 @@ class _AddExpensePageState extends State<AddExpensePage> {
               ),
             ),
             onTap: () {
-              if(addedCategoryTitle != '') {
+              if (addedCategoryTitle != '') {
                 setState(() {
                   expenseCategories.add(addedCategoryTitle);
                 });
-              }
-              else
+              } else
                 print('touch wasted');
             },
           ),
@@ -244,14 +268,15 @@ class _AddExpensePageState extends State<AddExpensePage> {
         return Container(
           padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.0),
-            gradient: (title.compareTo(selectedCategory) == 0) ? LinearGradient(
-              colors: [
-                Colors.lightGreen,
-                Colors.pinkAccent,
-              ],
-            ) : LinearGradient(colors: [Colors.blue, Colors.indigoAccent])
-          ),
+              borderRadius: BorderRadius.circular(20.0),
+              gradient: (title.compareTo(selectedCategory) == 0)
+                  ? LinearGradient(
+                      colors: [
+                        Colors.lightGreen,
+                        Colors.pinkAccent,
+                      ],
+                    )
+                  : LinearGradient(colors: [Colors.blue, Colors.indigoAccent])),
           child: InkWell(
             child: Text(
               title,

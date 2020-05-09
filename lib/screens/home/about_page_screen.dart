@@ -8,7 +8,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutPage extends StatelessWidget {
-
   String insta = 'https://www.instagram.com/chirag_c.s/';
   String git = 'https://github.com/chirag10k';
   String play = 'https://github.com/chirag10k';
@@ -17,43 +16,44 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                   primaryColor2,
-                    primaryColor1
-                  ],
-                ),
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [primaryColor2, primaryColor1],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      backButtonWidget(context, Colors.white),
-                      SizedBox(width: 10,),
-                      Text(
-                        'About the Developer',
-                        textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Rome',
-                        ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    backButtonWidget(context, Colors.white),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'About the Developer',
+                      textScaleFactor:
+                          MediaQuery.of(context).textScaleFactor * 2,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Rome',
                       ),
-                    ],
-                  ),
-                  Expanded(
-                    child: ListView(
-                      children: <Widget>[ Card(
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: ListView(
+                    children: <Widget>[
+                      Card(
                         margin: EdgeInsets.symmetric(horizontal: 40),
                         elevation: 20,
                         color: Colors.white,
@@ -75,8 +75,11 @@ class AboutPage extends StatelessWidget {
                                       width: 150.0,
                                       height: 200.0,
                                       child: CachedNetworkImage(
-                                        imageUrl: 'https://firebasestorage.googleapis.com/v0/b/budgetingapp-b789b.appspot.com/o/me.jpg?alt=media&token=f026b079-2186-4dde-bf89-24546eef9a57',
-                                        imageBuilder: (context, imageProvider) => Container(
+                                        imageUrl:
+                                            'https://firebasestorage.googleapis.com/v0/b/budgetingapp-b789b.appspot.com/o/me.jpg?alt=media&token=f026b079-2186-4dde-bf89-24546eef9a57',
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
                                               image: imageProvider,
@@ -84,7 +87,8 @@ class AboutPage extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        placeholder: (context, url) => Loading(),
+                                        placeholder: (context, url) =>
+                                            Loading(),
                                       ),
 //                                      child: Image.network(
 //                                        'https://firebasestorage.googleapis.com/v0/b/budgetingapp-b789b.appspot.com/o/me.jpg?alt=media&token=f026b079-2186-4dde-bf89-24546eef9a57',
@@ -92,7 +96,9 @@ class AboutPage extends StatelessWidget {
 //                                      ),
                                     ),
                                   ),
-                                  SizedBox(height: 20.0,),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
                                   Text(
                                     'CHIRAG SARAOGI',
                                     style: TextStyle(
@@ -108,7 +114,9 @@ class AboutPage extends StatelessWidget {
                                 color: Colors.black,
                                 thickness: 2,
                               ),
-                              SizedBox(height: 30,),
+                              SizedBox(
+                                height: 30,
+                              ),
                               Column(
                                 children: <Widget>[
                                   InkWell(
@@ -116,11 +124,13 @@ class AboutPage extends StatelessWidget {
                                       _launchURL(git);
                                     },
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(FontAwesomeIcons.github),
-                                        SizedBox(width: 10,),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
                                         Text(
                                           'GitHub',
                                           style: TextStyle(
@@ -132,17 +142,21 @@ class AboutPage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   InkWell(
                                     onTap: () {
                                       _launchURL(insta);
                                     },
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(FontAwesomeIcons.instagram),
-                                        SizedBox(width: 10,),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
                                         Text(
                                           'Instagram',
                                           style: TextStyle(
@@ -154,7 +168,9 @@ class AboutPage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(height: 20,),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   InkWell(
                                     onTap: () {
                                       try {
@@ -164,11 +180,13 @@ class AboutPage extends StatelessWidget {
                                       }
                                     },
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Icon(FontAwesomeIcons.appStore),
-                                        SizedBox(width: 10,),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
                                         Text(
                                           'PlayStore',
                                           style: TextStyle(

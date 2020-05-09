@@ -8,17 +8,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'database_service.dart';
 
 class AuthService {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   SharedPreferences prefs;
   bool isNew;
 
   //map firebase user object to user
-  User _userFromFirebase(FirebaseUser user){
-    if(user == null)
+  User _userFromFirebase(FirebaseUser user) {
+    if (user == null)
       return null;
-    else{
+    else {
       return User(
         uid: user.uid,
         nickname: user.displayName,
@@ -34,19 +33,18 @@ class AuthService {
 
   //get user stream on auth state changed
   Stream<User> get onAuthStateChanged {
-    return _auth.onAuthStateChanged
-        .map(_userFromFirebase);
+    return _auth.onAuthStateChanged.map(_userFromFirebase);
   }
 
   //check if the user is already signed up and write data
-  _isAlreadySignedUp(User user, bool isNew) async{
+  _isAlreadySignedUp(User user, bool isNew) async {
     final DatabaseService _db = DatabaseService(user: user);
-    final QuerySnapshot snapshot =
-        await _db.userCollection.where(
-          'uid', isEqualTo: user.uid).getDocuments();
+    final QuerySnapshot snapshot = await _db.userCollection
+        .where('uid', isEqualTo: user.uid)
+        .getDocuments();
     final List<DocumentSnapshot> documents = snapshot.documents;
-    if(isNew){
-    //Update data to server if new user
+    if (isNew) {
+      //Update data to server if new user
       _db.setUserData();
       //Now write data to local from local
       await prefs.setString('uid', user.uid);
@@ -54,8 +52,7 @@ class AuthService {
       await prefs.setString('email', user.email);
       await prefs.setString('photoUrl', user.photoUrl);
       await prefs.setInt('budgetCycle', user.budgetCycle);
-    }
-    else{
+    } else {
       //Write data to local from firestore
       user.budgetCycle = documents[0]['budgetCycle'];
       await prefs.setString('uid', documents[0]['uid']);
@@ -63,18 +60,17 @@ class AuthService {
       await prefs.setString('email', documents[0]['email']);
       await prefs.setString('photoUrl', documents[0]['photUrl']);
       await prefs.setInt('budgetCycle', documents[0]['budgetCycle']);
-
     }
   }
 
   //sign in with google
   Future signInWithGoogle() async {
-
     prefs = await SharedPreferences.getInstance();
 
     try {
       final GoogleSignInAccount googleAccount = await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleAuth = await googleAccount.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleAccount.authentication;
 
       final AuthCredential _credential = GoogleAuthProvider.getCredential(
         idToken: googleAuth.idToken,
@@ -86,21 +82,20 @@ class AuthService {
       final FirebaseUser firebaseUser = result.user;
       User user = _userFromFirebase(firebaseUser);
 
-      if(user != null){
+      if (user != null) {
         //check if user is already signed up
         _isAlreadySignedUp(user, isNew);
       } else
         return user;
-    } catch(e) {
+    } catch (e) {
       print(e);
       return null;
     }
-
   }
 
   //sign out
-  Future signOut() async{
-    try{
+  Future signOut() async {
+    try {
       expList.removeRange(0, expList.length);
       incomeList.removeRange(0, incomeList.length);
       await _auth.signOut();
@@ -108,10 +103,9 @@ class AuthService {
       await _googleSignIn.signOut();
       print('Signed Out');
       return null;
-    } catch(e) {
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
-
 }

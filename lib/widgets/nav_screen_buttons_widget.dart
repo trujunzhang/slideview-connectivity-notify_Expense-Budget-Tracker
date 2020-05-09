@@ -16,35 +16,37 @@ Widget backButtonWidget(BuildContext context, Color col) {
         ),
       ],
     ),
-    onTap: (){
+    onTap: () {
       Navigator.pop(context);
     },
   );
 }
 
 //Add Button
-Widget addButtonWidget(Color col){
+Widget addButtonWidget(Color col) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
     decoration: BoxDecoration(
-      color: Colors.black,
-      borderRadius: BorderRadius.circular(20.0),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.blue,
-          blurRadius: 3.0,
-          offset: Offset(0.0,2.0),
-        )
-      ]
-    ),
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue,
+            blurRadius: 3.0,
+            offset: Offset(0.0, 2.0),
+          )
+        ]),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         Text(
           'Add',
-          style: formFieldTitleTextStyle.copyWith(decoration: TextDecoration.underline),
+          style: formFieldTitleTextStyle.copyWith(
+              decoration: TextDecoration.underline),
         ),
-        SizedBox(width: 5.0,),
+        SizedBox(
+          width: 5.0,
+        ),
         Icon(
           Icons.arrow_forward,
           size: 30.0,

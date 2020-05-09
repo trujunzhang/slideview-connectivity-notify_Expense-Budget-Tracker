@@ -12,7 +12,7 @@ class AuthenticateScreen extends StatefulWidget {
 
 class _AuthenticateScreenState extends State<AuthenticateScreen> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
 //    final connectionStatus = Provider.of<ConnectivityStatus>(context);
     return OnboardingScreen();
   }

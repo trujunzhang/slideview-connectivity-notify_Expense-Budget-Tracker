@@ -2,13 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class iconData{
-
+class iconData {
   String title;
   Icon data;
 
   iconData({this.data, this.title});
-
 }
 
 List<iconData> iconList = [
@@ -16,19 +14,19 @@ List<iconData> iconList = [
   iconData(title: 'Graph', data: Icon(FontAwesomeIcons.chartPie)),
 ];
 
-List <String> onboardImageString = [
+List<String> onboardImageString = [
   'assets/images/onboard1.png',
   'assets/images/pie-chart.png',
   'assets/images/onboard-3.png'
 ];
 
-List <String> onboardTitle = [
+List<String> onboardTitle = [
   'Manage Expenses',
   'Visualise your spending habits',
   'Take smarter decisions',
 ];
 
-List <String> onboardSubTitle = [
+List<String> onboardSubTitle = [
   'Now no need to worry where your Pocket money or Income went at month-ends',
   'A visual is always better than some accounting gibberish!',
   'With recurring cycle and past expense records, make even smarter decisions',
@@ -64,7 +62,7 @@ Map<String, IconData> icons = {
   'Food': Icons.fastfood,
   'Fuel': FontAwesomeIcons.gasPump,
   'Travel': FontAwesomeIcons.car,
-  'Misc' : Icons.category,
+  'Misc': Icons.category,
   'Grooming': Icons.content_cut,
   'Home': Icons.home,
   'College Canteen': FontAwesomeIcons.solidBuilding,

@@ -10,7 +10,6 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class IncomePageScreen extends StatefulWidget {
-
   int index;
 
   IncomePageScreen({this.index});
@@ -20,8 +19,6 @@ class IncomePageScreen extends StatefulWidget {
 }
 
 class _IncomePageScreenState extends State<IncomePageScreen> {
-
-
   int index;
   DateTime dateTime;
 
@@ -29,16 +26,16 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if(incomeList[index].timestamp != null)
+    if (incomeList[index].timestamp != null)
       dateTime = incomeList[index].timestamp.toDate();
     final user1 = Provider.of<User>(context);
     final DatabaseService _db = DatabaseService(user: user1);
     return StreamBuilder(
       stream: _db.userData,
-      builder: (context, snapshot){
+      builder: (context, snapshot) {
         User user = snapshot.data;
         _db.user = user;
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           return Scaffold(
             body: Stack(
               children: <Widget>[
@@ -46,7 +43,7 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -61,7 +58,9 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
                       Row(
                         children: <Widget>[
                           backButtonWidget(context, Colors.white),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Text(
                             'Details',
                             style: TextStyle(
@@ -73,18 +72,25 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
                           ),
                           Spacer(),
                           IconButton(
-                            icon: Icon(Icons.delete, color: Colors.white,),
+                            icon: Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
                             onPressed: () {
                               showDialog(
                                   context: context,
-                                  builder: (context){
+                                  builder: (context) {
                                     return AlertDialog(
-                                      title: Text('Confirm delete Income entry?'),
+                                      title:
+                                          Text('Confirm delete Income entry?'),
                                       actions: <Widget>[
                                         FlatButton(
                                           onPressed: () {
                                             setState(() {
-                                              _db.deleteIncome(incomeList[index].timestamp, user.budgetCycle, incomeList[index].amount);
+                                              _db.deleteIncome(
+                                                  incomeList[index].timestamp,
+                                                  user.budgetCycle,
+                                                  incomeList[index].amount);
                                               Navigator.pop(context);
                                             });
                                             Navigator.pop(context);
@@ -92,18 +98,20 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
                                           child: Text('Yes'),
                                         ),
                                         FlatButton(
-                                          onPressed: () => Navigator.pop(context),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
                                           child: Text('No'),
                                         ),
                                       ],
                                     );
-                                  }
-                              );
+                                  });
                             },
                           ),
                         ],
                       ),
-                      SizedBox(height: 30,),
+                      SizedBox(
+                        height: 30,
+                      ),
                       Card(
                         elevation: 20,
                         color: Colors.blue[50],
@@ -111,36 +119,54 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 20),
+                          padding: EdgeInsets.only(
+                              top: 30, left: 10, right: 10, bottom: 20),
                           child: Column(
                             children: <Widget>[
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                  Icon(FontAwesomeIcons.rupeeSign, color: Colors.green,),
-                                  SizedBox(width: 10.0,),
+                                  Icon(
+                                    FontAwesomeIcons.rupeeSign,
+                                    color: Colors.green,
+                                  ),
+                                  SizedBox(
+                                    width: 10.0,
+                                  ),
                                   Text(
                                     incomeList[index].source,
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 20.0,
-                                        fontWeight: FontWeight.bold
-                                    ),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 20,),
+                              SizedBox(
+                                height: 20,
+                              ),
                               Divider(
                                 color: Colors.black,
                                 thickness: 2,
                               ),
-                              SizedBox(height: 30,),
-                              cardRowDetails('Category :', 'Income', Colors.green),
-                              SizedBox(height: 10,),
-                              cardRowDetails('Money :', '₹${incomeList[index].amount}', Colors.green),
-                              SizedBox(height: 10,),
-                              cardRowDetails('Date :', '${DateFormat.MMMd().format(dateTime)}', Colors.green),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              cardRowDetails(
+                                  'Category :', 'Income', Colors.green),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              cardRowDetails('Money :',
+                                  '₹${incomeList[index].amount}', Colors.green),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              cardRowDetails(
+                                  'Date :',
+                                  '${DateFormat.MMMd().format(dateTime)}',
+                                  Colors.green),
                             ],
                           ),
                         ),
@@ -151,8 +177,7 @@ class _IncomePageScreenState extends State<IncomePageScreen> {
               ],
             ),
           );
-        }
-        else{
+        } else {
           return Scaffold(
             body: Loading(),
           );

@@ -19,10 +19,10 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
     final DatabaseService _db = DatabaseService(user: user1);
     return StreamBuilder(
       stream: _db.userData,
-      builder: (context, snapshot){
+      builder: (context, snapshot) {
         User user = snapshot.data;
         _db.user = user;
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           return Scaffold(
             body: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 40.0),
@@ -33,35 +33,43 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                   Row(
                     children: <Widget>[
                       backButtonWidget(context, Colors.blue[800]),
-                      SizedBox(width: 10.0,),
+                      SizedBox(
+                        width: 10.0,
+                      ),
                       Text(
                         'Account Summary',
-                        textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                        textScaleFactor:
+                            MediaQuery.of(context).textScaleFactor * 2,
                         style: TextStyle(
                             color: Colors.blue[900],
 //                            fontSize: 38.0,
                             fontWeight: FontWeight.bold,
-                            fontFamily: 'Rome'
-                        ),
+                            fontFamily: 'Rome'),
                       ),
                     ],
                   ),
-                  SizedBox(height: 30.0,),
+                  SizedBox(
+                    height: 30.0,
+                  ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     width: MediaQuery.of(context).size.width,
                     height: 80.0,
-                    decoration: addExpenseButtonDecoration.copyWith(color: Colors.blueGrey[800]),
+                    decoration: addExpenseButtonDecoration.copyWith(
+                        color: Colors.blueGrey[800]),
                     child: Row(
                       children: <Widget>[
                         Icon(
                           FontAwesomeIcons.rupeeSign,
                           color: Colors.blue,
                         ),
-                        SizedBox(width: 5.0,),
+                        SizedBox(
+                          width: 5.0,
+                        ),
                         Text(
                           'Total Balance:',
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor * 2,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Rome',
@@ -70,7 +78,8 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                         Spacer(),
                         Text(
                           '₹${user.balance}',
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor * 2,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Rome',
@@ -79,22 +88,28 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     width: MediaQuery.of(context).size.width,
                     height: 80.0,
-                    decoration: addExpenseButtonDecoration.copyWith(color: Colors.blueGrey[800]),
+                    decoration: addExpenseButtonDecoration.copyWith(
+                        color: Colors.blueGrey[800]),
                     child: Row(
                       children: <Widget>[
                         Icon(
                           FontAwesomeIcons.plusCircle,
                           color: Colors.green,
                         ),
-                        SizedBox(width: 5.0,),
+                        SizedBox(
+                          width: 5.0,
+                        ),
                         Text(
                           'Total Income:',
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor * 2,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Rome',
@@ -103,7 +118,8 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                         Spacer(),
                         Text(
                           '₹${user.tIncomeAmount}',
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor * 2,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Rome',
@@ -112,22 +128,28 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.0),
                     width: MediaQuery.of(context).size.width,
                     height: 80.0,
-                    decoration: addExpenseButtonDecoration.copyWith(color: Colors.blueGrey[800]),
+                    decoration: addExpenseButtonDecoration.copyWith(
+                        color: Colors.blueGrey[800]),
                     child: Row(
                       children: <Widget>[
                         Icon(
                           FontAwesomeIcons.minusCircle,
                           color: Colors.red,
                         ),
-                        SizedBox(width: 5.0,),
+                        SizedBox(
+                          width: 5.0,
+                        ),
                         Text(
                           'Total Expense:',
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor * 2,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Rome',
@@ -136,7 +158,8 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                         Spacer(),
                         Text(
                           '₹${user.tExpenseAmount}',
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor * 2,
+                          textScaleFactor:
+                              MediaQuery.of(context).textScaleFactor * 2,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Rome',
@@ -145,13 +168,14 @@ class _AccountSummaryScreenState extends State<AccountSummaryScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.0,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                 ],
               ),
             ),
           );
-        }
-        else{
+        } else {
           return Scaffold(
             body: Loading(),
           );

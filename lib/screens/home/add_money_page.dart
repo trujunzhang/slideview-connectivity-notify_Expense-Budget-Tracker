@@ -13,7 +13,6 @@ class AddMoneyPage extends StatefulWidget {
 }
 
 class _AddMoneyPageState extends State<AddMoneyPage> {
-
   final _formKey = GlobalKey<FormState>();
 
   String selectedIncomeMode = addIncomeMode[0];
@@ -27,10 +26,10 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
     final DatabaseService _db = DatabaseService(user: user1);
     return StreamBuilder(
       stream: _db.userData,
-      builder: (context, snapshot){
+      builder: (context, snapshot) {
         User user = snapshot.data;
         _db.user = user;
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           return Scaffold(
             resizeToAvoidBottomInset: false,
             body: Container(
@@ -45,36 +44,44 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                     children: <Widget>[
                       InkWell(
                         child: addButtonWidget(Colors.white),
-                        onTap: (){
-                          if(_formKey.currentState.validate()){
-                            if(selectedIncomeMode == addIncomeMode[1])
-                              selectedIncomeMode = (addedSourceTitle == null) ? 'Others' : addedSourceTitle;
+                        onTap: () {
+                          if (_formKey.currentState.validate()) {
+                            if (selectedIncomeMode == addIncomeMode[1])
+                              selectedIncomeMode = (addedSourceTitle == null)
+                                  ? 'Others'
+                                  : addedSourceTitle;
                             _db.addIncome(amount, selectedIncomeMode);
                             print('Income Added');
-                            showDialog(context: context,builder: (context){
-                              return AlertDialog(
-                                title: Text("Income Added!"),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text(
-                                      'OK',
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    } ,
-                                  ),
-                                ],
-                              );
-                            });
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("Income Added!"),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text(
+                                          'OK',
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
                           }
                         },
                       ),
                     ],
                   ),
-                  SizedBox(height: 50.0,),
+                  SizedBox(
+                    height: 50.0,
+                  ),
                   incomeSourceSelector(),
-                  SizedBox(height: 30.0,),
+                  SizedBox(
+                    height: 30.0,
+                  ),
                   Container(
                     child: incomeDetailsForm(context),
                   ),
@@ -82,8 +89,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
               ),
             ),
           );
-        }
-        else{
+        } else {
           return Scaffold(body: Loading());
         }
       },
@@ -102,7 +108,9 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
             '* Amount',
             style: formFieldTitleTextStyle,
           ),
-          SizedBox(height: 15.0,),
+          SizedBox(
+            height: 15.0,
+          ),
           TextFormField(
               keyboardType: TextInputType.number,
               decoration: formFieldDecoration,
@@ -113,45 +121,54 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
               onChanged: (val) {
                 amount = int.parse(val);
               },
-              validator: (val){
-                if(val.isEmpty)
+              validator: (val) {
+                if (val.isEmpty)
                   return 'Please enter an amount';
-                else if(val.contains('-') || val.contains(' ') || val.contains(','))
+                else if (val.contains('-') ||
+                    val.contains(' ') ||
+                    val.contains(','))
                   return 'Invalid Amount';
                 else
                   return null;
-              }
+              }),
+          SizedBox(
+            height: 15.0,
           ),
-          SizedBox(height: 15.0,),
           //Custom Source Title Field
           (selectedIncomeMode == addIncomeMode[1])
               ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 15.0,),
-              Text(
-                'Source Title',
-                style: formFieldTitleTextStyle.copyWith(fontSize: 40.0),
-              ),
-              TextFormField(
-                decoration: formFieldDecoration,
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.white,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    Text(
+                      'Source Title',
+                      style: formFieldTitleTextStyle.copyWith(fontSize: 40.0),
+                    ),
+                    TextFormField(
+                      decoration: formFieldDecoration,
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.white,
+                      ),
+                      onChanged: (val) {
+                        addedSourceTitle = val;
+                      },
+                    ),
+                    SizedBox(
+                      height: 15.0,
+                    )
+                  ],
+                )
+              : SizedBox(
+                  height: 15.0,
                 ),
-                onChanged: (val) {
-                  addedSourceTitle = val;
-                },
-              ),
-              SizedBox(height: 15.0,)
-            ],
-          )
-              : SizedBox(height: 15.0,),
         ],
       ),
     );
   }
-  
+
   Widget incomeSourceSelector() {
     List<Widget> buildIncomeModeChip() {
       List<Widget> incomesource = addIncomeMode.map((title) {
@@ -159,11 +176,15 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          color: (title.compareTo(selectedIncomeMode) == 0) ? Colors.white : Colors.black,
+          color: (title.compareTo(selectedIncomeMode) == 0)
+              ? Colors.white
+              : Colors.black,
           child: Text(
             title,
             style: TextStyle(
-              color: (title.compareTo(selectedIncomeMode) == 0) ? Colors.black : Colors.white,
+              color: (title.compareTo(selectedIncomeMode) == 0)
+                  ? Colors.black
+                  : Colors.white,
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'Rome',
@@ -178,6 +199,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
       }).toList();
       return incomesource;
     }
+
     return Wrap(
       spacing: 20,
       alignment: WrapAlignment.spaceAround,

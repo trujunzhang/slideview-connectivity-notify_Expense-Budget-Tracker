@@ -16,26 +16,18 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        /*loading ? Loading() :*/ Container(
-//          height: 50,
+       Container(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: MaterialButton(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
-//            height: 40.0,
             minWidth: MediaQuery.of(context).size.width,
             color: Colors.white,
             elevation: 5.0,
             onPressed: () async {
-              //setState(() => loading = true);
               dynamic result = await _authService.signInWithGoogle();
-//              if(result == null){
-              //setState(() {
-              //loading = false;
-//                });
-//              }
               return result;
             },
             child: Row(

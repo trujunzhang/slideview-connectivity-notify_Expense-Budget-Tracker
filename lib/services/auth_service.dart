@@ -44,7 +44,7 @@ class AuthService {
         .where('uid', isEqualTo: user.uid)
         .getDocuments();
     final List<DocumentSnapshot> documents = snapshot.documents;
-    if (isNew) {
+    if (documents.length == 0) {
       //Update data to server if new user
       _db.setUserData();
       //Now write data to local from local
@@ -79,7 +79,8 @@ class AuthService {
       );
 
       final AuthResult result = await _auth.signInWithCredential(_credential);
-      isNew = result.additionalUserInfo.isNewUser;
+      // isNew = result.additionalUserInfo.isNewUser;
+      isNew = true;
       final FirebaseUser firebaseUser = result.user;
       User user = _userFromFirebase(firebaseUser);
 

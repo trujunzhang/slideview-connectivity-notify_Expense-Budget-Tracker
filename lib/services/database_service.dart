@@ -13,7 +13,7 @@ class DatabaseService {
   DatabaseService({this.user});
 
   static final Firestore _firestore = Firestore.instance;
-  SharedPreferences prefs;
+  // SharedPreferences prefs;
 
   //Users Collection reference
   final CollectionReference userCollection = _firestore.collection('users');

@@ -22,12 +22,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-  SharedPreferences prefs;
+  // SharedPreferences prefs;
   int _currentPage = 0;
   bool transform = false;
   bool loadList = true;
 
-  final AuthService _authService = AuthService();
+  // final AuthService _authService = AuthService();
   final PushNotificationService _pushNotificationService =
       PushNotificationService();
 
